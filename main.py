@@ -28,7 +28,7 @@ def create_waypoint(place):
 
 def get_commute_routes(routes, project_id, bucket_name, output_filename_prefix="commute_routes"):
     """
-    Calls the Google Routes API for a list of routes and saves to CSV.
+    Calls the Google Routes API for a list of routes and appends to a CSV in GCS.
 
     Args:
         routes: A list of tuples, where each tuple contains an origin,
@@ -39,7 +39,6 @@ def get_commute_routes(routes, project_id, bucket_name, output_filename_prefix="
         output_filename_prefix: The prefix for the output CSV file.
     """
     # Authenticate using gcloud user credentials.
-    # Ensure you have run "gcloud auth application-default login"
     try:
         credentials, _ = google.auth.default(
             scopes=['https://www.googleapis.com/auth/cloud-platform'])
@@ -53,16 +52,14 @@ def get_commute_routes(routes, project_id, bucket_name, output_filename_prefix="
         client_options={"quota_project_id": project_id}
     )
 
-    timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_filename = f"{output_filename_prefix}_{timestamp_str}.csv"
+    output_filename = f"{output_filename_prefix}.csv"
     
-    # Use gcsfs to write directly to the GCS bucket
+    # Use gcsfs to interact with the GCS bucket
     gcs = gcsfs.GCSFileSystem(project=project_id, token=credentials)
     gcs_path = f"gs://{bucket_name}/{output_filename}"
 
-    rows_to_write = []
+    new_rows = []
     header = ["origin", "destination", "travel_mode", "distance_km", "duration_min", "warnings", "line_geometry", "timestamp"]
-    rows_to_write.append(header)
 
     for origin, destination, travel_mode in routes:
         print(f"Processing route from {origin} to {destination} via {travel_mode}...")
@@ -82,11 +79,8 @@ def get_commute_routes(routes, project_id, bucket_name, output_filename_prefix="
         try:
             response = client.compute_routes(
                 request=request,
-                # The field mask is used to specify which fields to return in the response.
-                # https://developers.google.com/maps/documentation/routes/reference/rpc/google.maps.routing.v2/routes.service#computeroutes
                 metadata=[('x-goog-fieldmask', 'routes.duration,routes.distanceMeters,routes.warnings,routes.polyline.encodedPolyline')]
             )
-            # Assuming at least one route is found
             if response.routes:
                 route = response.routes[0]
                 distance_km = route.distance_meters / 1000
@@ -96,23 +90,45 @@ def get_commute_routes(routes, project_id, bucket_name, output_filename_prefix="
                 line_geometry = ""
                 if route.polyline and route.polyline.encoded_polyline:
                     decoded_polyline = polyline.decode(route.polyline.encoded_polyline)
-                    # WKT LINESTRING format is "LINESTRING (lon1 lat1, lon2 lat2, ...)"
                     line_geometry = f"LINESTRING ({', '.join([f'{lon} {lat}' for lat, lon in decoded_polyline])})"
-                
-                timestamp = datetime.now().isoformat()
-                rows_to_write.append([origin, destination, travel_mode, f"{distance_km:.2f}", duration_min, warnings, line_geometry, timestamp])
-            else:
-                timestamp = datetime.now().isoformat()
-                rows_to_write.append([origin, destination, travel_mode, "N/A", "N/A", "No routes found", "", timestamp])
 
+                new_rows.append([
+                    origin,
+                    destination,
+                    travel_mode,
+                    distance_km,
+                    duration_min,
+                    warnings,
+                    line_geometry,
+                    datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                ])
         except Exception as e:
-            timestamp = datetime.now().isoformat()
-            rows_to_write.append([origin, destination, travel_mode, "N/A", "N/A", f"Error: {e}", "", timestamp])
+            print(f"An error occurred during the Routes API call: {e}")
 
-    with gcs.open(gcs_path, 'w', newline='', encoding='utf-8') as csvfile:
-        csv_writer = csv.writer(csvfile)
-        csv_writer.writerows(rows_to_write)
+    if not new_rows:
+        print("No new routes to add.")
+        return
+
+    # Create a DataFrame for the new data
+    new_df = pd.DataFrame(new_rows, columns=header)
+
+    # Check if the file already exists in GCS
+    if gcs.exists(gcs_path):
+        print(f"Appending data to existing file: {gcs_path}")
+        # Read the existing data
+        with gcs.open(gcs_path, 'r') as f:
+            existing_df = pd.read_csv(f)
+        
+        # Append the new data
+        combined_df = pd.concat([existing_df, new_df], ignore_index=True)
+    else:
+        print(f"Creating new file: {gcs_path}")
+        combined_df = new_df
+
+    # Write the combined data back to GCS, overwriting the file
+    with gcs.open(gcs_path, 'w', newline='') as f:
+        combined_df.to_csv(f, index=False)
     
-    print(f"Done. Results saved to {gcs_path}")
+    print(f"Successfully wrote {len(new_df)} new routes to {gcs_path}")
 
 ## No main() function needed. This file is now a library for the timezone scripts.

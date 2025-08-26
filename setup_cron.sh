@@ -18,12 +18,12 @@ CENTRAL_CMD="cd $HOME_DIR && $PYTHON_EXECUTABLE $APP_DIR/central.py"
 EASTERN_CMD="cd $HOME_DIR && $PYTHON_EXECUTABLE $APP_DIR/eastern.py"
 ATLANTIC_CMD="cd $HOME_DIR && $PYTHON_EXECUTABLE $APP_DIR/atlantic.py"
 
-# Cron schedules (every 10 minutes from 6am to 11:59pm local time)
-PACIFIC_SCHEDULE="*/10 6-23 * * *"
-MOUNTAIN_SCHEDULE="*/10 6-23 * * *"
-CENTRAL_SCHEDULE="*/10 6-23 * * *"
-EASTERN_SCHEDULE="*/10 6-23 * * *"
-ATLANTIC_SCHEDULE="*/10 6-23 * * *"
+# Cron schedules (every 10 minutes from 6am to 11:59pm local time, converted to UTC)
+PACIFIC_SCHEDULE="*/10 13-23,0-6 * * *"   # UTC-7: 6am-11:59pm is 13:00-06:59 UTC
+MOUNTAIN_SCHEDULE="*/10 12-23,0-5 * * *"  # UTC-6: 6am-11:59pm is 12:00-05:59 UTC
+CENTRAL_SCHEDULE="*/10 11-23,0-4 * * *" # UTC-5: 6am-11:59pm is 11:00-04:59 UTC
+EASTERN_SCHEDULE="*/10 10-23,0-3 * * *"  # UTC-4: 6am-11:59pm is 10:00-03:59 UTC
+ATLANTIC_SCHEDULE="*/10 9-23,0-2 * * *" # UTC-3: 6am-11:59pm is 09:00-02:59 UTC
 
 # Add the cron jobs to the crontab
 (crontab -l 2>/dev/null; echo "$PACIFIC_SCHEDULE $PACIFIC_CMD"; echo "$MOUNTAIN_SCHEDULE $MOUNTAIN_CMD"; echo "$CENTRAL_SCHEDULE $CENTRAL_CMD"; echo "$EASTERN_SCHEDULE $EASTERN_CMD"; echo "$ATLANTIC_SCHEDULE $ATLANTIC_CMD") | crontab -

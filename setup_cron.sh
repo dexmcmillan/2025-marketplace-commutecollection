@@ -6,7 +6,7 @@
 HOME_DIR=$(eval echo ~$USER)
 
 # The directory where the scripts are located
-APP_DIR="$HOME_DIR/scripts_by_timezone"
+APP_DIR="$HOME_DIR/2025-marketplace-commutecollection/scripts_by_timezone"
 
 # The python executable path
 PYTHON_EXECUTABLE=$(which python3)

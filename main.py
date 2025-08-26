@@ -3,76 +3,13 @@ import csv
 import re
 import polyline
 import google.auth
-import gspread
 import pandas as pd
 import gcsfs
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
 from google.maps.routing_v2 import RoutesClient
 from google.maps.routing_v2.types import ComputeRoutesRequest, Waypoint
 from datetime import datetime
 
 
-# If modifying these scopes, delete the file token.json.
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
-
-def authenticate_google_sheets():
-    """Authenticates with Google Sheets API using OAuth 2.0."""
-    creds = None
-    if os.path.exists('token.json'):
-        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            if not os.path.exists('credentials.json'):
-                print("Error: credentials.json not found. Please download it from the Google Cloud Console.")
-                return None
-            flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
-            creds = flow.run_local_server(port=0)
-        with open('token.json', 'w') as token:
-            token.write(creds.to_json())
-    return creds
-
-def get_routes_from_google_sheet(sheet_url):
-    """Reads and filters commute routes from a Google Sheet."""
-    creds = authenticate_google_sheets()
-    if not creds:
-        return []
-    
-    gc = gspread.authorize(creds)
-    
-    try:
-        spreadsheet = gc.open_by_url(sheet_url)
-        worksheet = spreadsheet.get_worksheet(0)
-        data = worksheet.get_all_records()
-        df = pd.DataFrame(data)
-        
-        # Check for required columns
-        required_columns = ['start_location', 'end_location', 'commute_type', 'transportation_mode']
-        if not all(col in df.columns for col in required_columns):
-            print(f"Error: Missing one or more required columns in the Google Sheet: {required_columns}")
-            return []
-
-        # Filter the DataFrame
-        # gspread can return empty strings for empty cells, so check for that.
-        filtered_df = df[
-            (df['commute_type'] == 'full commute') &
-            (df['start_location'].astype(str).str.strip() != '') &
-            (df['end_location'].astype(str).str.strip() != '') &
-            (df['transportation_mode'].astype(str).str.strip() != '')
-        ]
-        
-        return list(zip(filtered_df['start_location'], filtered_df['end_location'], filtered_df['transportation_mode']))
-            
-    except gspread.exceptions.SpreadsheetNotFound:
-        print("Error: Spreadsheet not found. Please check the URL and your permissions.")
-        return []
-    except Exception as e:
-        print(f"An error occurred while reading the Google Sheet: {e}")
-        return []
 
 def create_waypoint(place):
     """Creates a Waypoint object, detecting if 'place' is an address or lat/lng."""
@@ -178,28 +115,4 @@ def get_commute_routes(routes, project_id, bucket_name, output_filename_prefix="
     
     print(f"Done. Results saved to {gcs_path}")
 
-def main():
-    sheet_url = "https://docs.google.com/spreadsheets/d/17VkS5Z81iI2HdpsDdPjMFAKpqzm2kgfRbYlG5ODfDZk/edit?gid=0#gid=0"
-    commute_routes = get_routes_from_google_sheet(sheet_url)
-
-    if not commute_routes:
-        print("Could not retrieve routes from Google Sheet. Exiting.")
-        return
-
-    project_id = "dig-es-nws-gemini-projects" # <--- CHANGE THIS
-    bucket_name = "marketplace-commutes" # <--- CHANGE THIS
-    if project_id == "your-google-cloud-project-id":
-        print("Please change the project_id variable in main.py")
-        return
-    if bucket_name == "your-gcs-bucket-name":
-        print("Please change the bucket_name variable in main.py")
-        return
-
-    print("Hello from 2025-marketplace-commuteroutes!")
-    print(f"Found {len(commute_routes)} routes in the Google Sheet.")
-    print("Fetching commute routes...")
-    get_commute_routes(commute_routes, project_id, bucket_name)
-
-
-if __name__ == "__main__":
-    main()
+## No main() function needed. This file is now a library for the timezone scripts.

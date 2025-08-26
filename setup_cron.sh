@@ -2,21 +2,24 @@
 
 # This script sets up cron jobs to run the timezone-specific python scripts.
 
-# The user's home directory
-HOME_DIR=$(eval echo ~$USER)
+# The directory where this script is located
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
-# The directory where the scripts are located
-APP_DIR="$HOME_DIR/scripts_by_timezone"
+# The directory where the scripts are located (one level up from this script's location)
+APP_DIR=$(dirname "$SCRIPT_DIR")
 
-# The python executable path
-PYTHON_EXECUTABLE=$(which python3)
+# The python executable path (assuming a uv venv in the project)
+PYTHON_EXECUTABLE="$APP_DIR/.venv/bin/python"
+
+# Log file
+LOG_FILE="$APP_DIR/cron.log"
 
 # Cron job commands
-PACIFIC_CMD="cd $HOME_DIR && $PYTHON_EXECUTABLE $APP_DIR/pacific.py"
-MOUNTAIN_CMD="cd $HOME_DIR && $PYTHON_EXECUTABLE $APP_DIR/mountain.py"
-CENTRAL_CMD="cd $HOME_DIR && $PYTHON_EXECUTABLE $APP_DIR/central.py"
-EASTERN_CMD="cd $HOME_DIR && $PYTHON_EXECUTABLE $APP_DIR/eastern.py"
-ATLANTIC_CMD="cd $HOME_DIR && $PYTHON_EXECUTABLE $APP_DIR/atlantic.py"
+PACIFIC_CMD="cd $APP_DIR && $PYTHON_EXECUTABLE $APP_DIR/scripts_by_timezone/pacific.py >> $LOG_FILE 2>&1"
+MOUNTAIN_CMD="cd $APP_DIR && $PYTHON_EXECUTABLE $APP_DIR/scripts_by_timezone/mountain.py >> $LOG_FILE 2>&1"
+CENTRAL_CMD="cd $APP_DIR && $PYTHON_EXECUTABLE $APP_DIR/scripts_by_timezone/central.py >> $LOG_FILE 2>&1"
+EASTERN_CMD="cd $APP_DIR && $PYTHON_EXECUTABLE $APP_DIR/scripts_by_timezone/eastern.py >> $LOG_FILE 2>&1"
+ATLANTIC_CMD="cd $APP_DIR && $PYTHON_EXECUTABLE $APP_DIR/scripts_by_timezone/atlantic.py >> $LOG_FILE 2>&1"
 
 # Cron schedules (every 10 minutes from 6am to 11:59pm local time, converted to UTC)
 PACIFIC_SCHEDULE="*/10 13-23,0-6 * * *"   # UTC-7: 6am-11:59pm is 13:00-06:59 UTC

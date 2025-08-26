@@ -6,7 +6,7 @@
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
 # The directory where the scripts are located (one level up from this script's location)
-APP_DIR=$(dirname "$SCRIPT_DIR")
+APP_DIR=$(dirname "$SCRIPT_DIR/2025-marketplace-commutecollection")
 
 # The python executable path (assuming a uv venv in the project)
 PYTHON_EXECUTABLE="$APP_DIR/.venv/bin/python"

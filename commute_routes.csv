@@ -39,8 +39,8 @@ Gatineau,Ottawa,TRANSIT,6.02,Ottawa,
 "Barrhaven Centre Station, Ottawa",Bank St & Ave. Laurier,TRANSIT,,Ottawa,Submitted by Adam Green
 "53.51219525044683, -113.62989869565348","53.581124265285354, -113.49216173065435",DRIVE,,Edmonton,Submitted by Lauren Dombroski
 "53.4359982560371, -113.6093222412034","St. Albert, Alberta",DRIVE,,Edmonton,Submitted by Jaden Houle
-"Bridlewood, Ottawa, ON K2M 3A1","Downtown, Ottawa, ON",CYCLING,,Ottawa,Submitted by Harry
-"49.89712217786214, -97.05075975452641","49.786032966205994, -97.16558151683073",CYCLING,,Winnipeg,Submitted by Lovell
+"Bridlewood, Ottawa, ON K2M 3A1","Downtown, Ottawa, ON",BICYCLE,,Ottawa,Submitted by Harry
+"49.89712217786214, -97.05075975452641","49.786032966205994, -97.16558151683073",BICYCLE,,Winnipeg,Submitted by Lovell
 "Downtown, Ottawa, ON","Kanata, Ottawa, ON",TRANSIT,,Ottawa,Submitted by Michael McCormick
 "Cole Harbour, Nova Scotia","Shearwater, Nova Scotia",TRANSIT,,Halifax,Submitted by Keegan Bulger
 "43.79981652363712, -79.26966538030372","43.90588773299563, -78.93131030300701",DRIVE,,Toronto,"""North Scarborough to Durham region"". Submitted by Kevin Black"
@@ -50,4 +50,4 @@ Gatineau,Ottawa,TRANSIT,6.02,Ottawa,
 "Kipling Ave & Eglinton Ave W, Etobicoke, ON M9R 1Y3","43.59347927593529, -79.64395436760626",DRIVE,,Toronto,Submitted by Arie Smith
 "Stayner, Ontario L0M 1S0","43.67371164802397, -79.41517005007982",DRIVE,,Toronto,Submitted by Joel Plinsk
 "43.6439714995947, -79.4421162780229","43.654405195053954, -79.40143253371338",TRANSIT,,Toronto,"Parkdale to Kensington Market. Submitted by Mike Barber. Sometimes they do this commute by transit, other times by bike. So listed twice."
-"43.6439714995947, -79.4421162780229","43.654405195053954, -79.40143253371338",CYCLING,,Toronto,"Parkdale to Kensington Market. Submitted by Mike Barber. Sometimes they do this commute by transit, other times by bike. So listed twice."
+"43.6439714995947, -79.4421162780229","43.654405195053954, -79.40143253371338",BICYCLE,,Toronto,"Parkdale to Kensington Market. Submitted by Mike Barber. Sometimes they do this commute by transit, other times by bike. So listed twice."

@@ -14,7 +14,7 @@ def get_routes_from_csv(file_path):
     try:
         df = pd.read_csv(file_path)
         # Ensure required columns exist
-        required_columns = ['origin', 'destination', 'travel_mode']
+        required_columns = ['origin', 'destination', 'travel_mode', 'city']
         if not all(col in df.columns for col in required_columns):
             print(f"Error: Missing one or more required columns in the CSV file: {required_columns}")
             return []
@@ -23,10 +23,11 @@ def get_routes_from_csv(file_path):
         filtered_df = df[
             (df['origin'].astype(str).str.strip() != '') &
             (df['destination'].astype(str).str.strip() != '') &
-            (df['travel_mode'].astype(str).str.strip() != '')
+            (df['travel_mode'].astype(str).str.strip() != '') &
+            (df['city'].astype(str).str.strip() != '')
         ].copy()
 
-        return list(zip(filtered_df['origin'], filtered_df['destination'], filtered_df['travel_mode']))
+        return list(zip(filtered_df['origin'], filtered_df['destination'], filtered_df['travel_mode'], filtered_df['city']))
     except FileNotFoundError:
         print(f"Error: {file_path} not found.")
         return []
@@ -35,7 +36,7 @@ def get_routes_from_csv(file_path):
         return []
 
 def filter_routes_by_city(routes):
-    return [route for route in routes if any(city in route[0] for city in CENTRAL_CITIES)]
+    return [route for route in routes if route[3] in CENTRAL_CITIES]
 
 if __name__ == "__main__":
     csv_file = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'commute_routes.csv'))
@@ -44,7 +45,9 @@ if __name__ == "__main__":
     project_id = "dig-es-nws-gemini-projects"
     bucket_name = "marketplace-commutes"
     if central_routes:
-        print(f"Found {len(central_routes)} routes for the Central time zone.")
-        get_commute_routes(central_routes, project_id, bucket_name, output_filename_prefix="commute_routes_central")
+        # Strip the city from the tuples before passing to get_commute_routes
+        routes_to_process = [(r[0], r[1], r[2]) for r in central_routes]
+        print(f"Found {len(routes_to_process)} routes for the Central time zone.")
+        get_commute_routes(routes_to_process, project_id, bucket_name, output_filename_prefix="commute_routes_central")
     else:
         print("No routes found for the Central time zone.")

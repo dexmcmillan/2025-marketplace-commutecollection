@@ -1,53 +1,53 @@
-origin,destination,travel_mode,distance_km,notes
-"St. Albert, AB","Downtown Edmonton, AB",DRIVE,17.96,
-"Mill Woods, Edmonton","Downtown Edmonton, AB",BICYCLE,14.3,
-"Eaux Claires Transit Centre, Edmonton","Downtown Edmonton, AB",TRANSIT,10.96,
-"Larry Uteck, Halifax",Hospital in Halifax,DRIVE,10.25,
-"Windsor Street, Halifax","St. Margaret's Bay Road, Halifax",DRIVE,4.94,
-"Dartmouth Bridge Terminal, Dartmouth","Mount Saint Vincent University, Halifax",TRANSIT,10.5,
-"Armdale, Halifax","Bayers Lake, Halifax",DRIVE,7.78,
-"North End, Halifax","Macdonald Bridge, Halifax",BICYCLE,1.72,
-"Eagleson Park and Ride, Ottawa",Downtown Ottawa,TRANSIT,24.01,
-"Riverside South, Ottawa",Downtown Ottawa,DRIVE,18.08,
-Gatineau,Ottawa,TRANSIT,6.02,
-"Orleans, Ottawa",Downtown Ottawa,DRIVE,19.2,
-"The Glebe, Ottawa","Any highway, Ottawa",DRIVE,2.42,
-"Barrhaven Centre Station, Ottawa","Campus Station, Ottawa",TRANSIT,25.43,
-"Vanier, Ottawa","Tunney's Pasture, Ottawa",BICYCLE,8.92,
-"Newton Exchange, Surrey","Surrey Central Station, Surrey",TRANSIT,7.25,
-"Cloverdale, Surrey",Richmond/Vancouver,DRIVE,43.56,
-"Fleetwood, Surrey",Langley,DRIVE,14.97,
-"88th Ave, Surrey",Coquitlam,DRIVE,22.69,
-"Gardiner Expressway and Highway 427, Toronto",Downtown Toronto,DRIVE,7.53,
-"Highway 401, Mississauga","Highway 401 and Don Valley Parkway, Toronto",DRIVE,59.5,
-"Eglinton Station, Toronto","Bloor-Yonge Station, Toronto",TRANSIT,4.41,
-"Colwood, Victoria",Downtown Victoria,DRIVE,0.19,
-"Tillicum Centre, Victoria","Patricia Bay Highway, Victoria",DRIVE,4.08,
-"Esquimalt, Victoria","University of Victoria, Victoria",BICYCLE,7.25,
-"Transcona, Winnipeg",Anywhere,DRIVE,N/A,
-"Charleswood, Winnipeg","St. James, Winnipeg",DRIVE,11.88,
-"St. Norbert, Winnipeg","Polo Park, Winnipeg",TRANSIT,22.93,
-"St. James, Winnipeg","Transcona, Winnipeg",DRIVE,16.29,
-"Riverbend, Winnipeg","St. Boniface, Winnipeg",DRIVE,15.78,
-"Westwood, Winnipeg","Fort Garry, Winnipeg",DRIVE,16.13,
-"Wolseley, Winnipeg","University of Manitoba, Winnipeg",BICYCLE,2.98,
-"Port Coquitlam, BC","Richmond Sea Island, BC",DRIVE,,
-"Bathurst and St. Clair, Toronto","43.730149818930826, -79.4484314649261",DRIVE,,Submitted by Steven Dennis
-"Squamish, BC","Delta, BC",DRIVE,,Submitted by Alex Nevison
-"Barrie, Ontario",GM Oshawa Assembly,DRIVE,,Submitted by Henry Toy
-"Camden East, Ontario",Napanee,DRIVE,,Submitted by Cindy Hunter
-"Barrhaven Centre Station, Ottawa",Bank St & Ave. Laurier,TRANSIT,,Submitted by Adam Green
-"53.51219525044683, -113.62989869565348","53.581124265285354, -113.49216173065435",DRIVE,,Submitted by Lauren Dombroski
-"53.4359982560371, -113.6093222412034","St. Albert, Alberta",DRIVE,,Submitted by Jaden Houle
-"Bridlewood, Ottawa, ON K2M 3A1","Downtown, Ottawa, ON",CYCLING,,Submitted by Harry
-"49.89712217786214, -97.05075975452641","49.786032966205994, -97.16558151683073",CYCLING,,Submitted by Lovell
-"Downtown, Ottawa, ON","Kanata, Ottawa, ON",TRANSIT,,Submitted by Michael McCormick
-"Cole Harbour, Nova Scotia","Shearwater, Nova Scotia",TRANSIT,,Submitted by Keegan Bulger
-"43.79981652363712, -79.26966538030372","43.90588773299563, -78.93131030300701",DRIVE,,"""North Scarborough to Durham region"". Submitted by Kevin Black"
-"East Chezzetcook, Nova Scotia","Halifax, Nova Scotia",DRIVE,,Submitted by Curtis Boucher
-"The Beaches, Toronto, ON","CBC Toronto, Canadian Broadcasting Centre, 205 Wellington St W, Toronto, ON M5W 1E6",DRIVE,,Submitted by Dana Dragone
-"Armdale rotary notary, 1791 Bloomingdale Terrace, Halifax, NS B3H 4E6","44.69778080386748, -63.584001819363955",TRANSIT,,
-"Kipling Ave & Eglinton Ave W, Etobicoke, ON M9R 1Y3","43.59347927593529, -79.64395436760626",DRIVE,,Submitted by Arie Smith
-"Stayner, Ontario L0M 1S0","43.67371164802397, -79.41517005007982",DRIVE,,Submitted by Joel Plinsk
-"43.6439714995947, -79.4421162780229","43.654405195053954, -79.40143253371338",TRANSIT,,"Parkdale to Kensington Market. Submitted by Mike Barber. Sometimes they do this commute by transit, other times by bike. So listed twice."
-"43.6439714995947, -79.4421162780229","43.654405195053954, -79.40143253371338",CYCLING,,"Parkdale to Kensington Market. Submitted by Mike Barber. Sometimes they do this commute by transit, other times by bike. So listed twice."
+origin,destination,travel_mode,distance_km,city,notes
+"St. Albert, AB","Downtown Edmonton, AB",DRIVE,17.96,Edmonton,
+"Mill Woods, Edmonton","Downtown Edmonton, AB",BICYCLE,14.3,Edmonton,
+"Eaux Claires Transit Centre, Edmonton","Downtown Edmonton, AB",TRANSIT,10.96,Edmonton,
+"Larry Uteck, Halifax",Hospital in Halifax,DRIVE,10.25,Halifax,
+"Windsor Street, Halifax","St. Margaret's Bay Road, Halifax",DRIVE,4.94,Halifax,
+"Dartmouth Bridge Terminal, Dartmouth","Mount Saint Vincent University, Halifax",TRANSIT,10.5,Halifax,
+"Armdale, Halifax","Bayers Lake, Halifax",DRIVE,7.78,Halifax,
+"North End, Halifax","Macdonald Bridge, Halifax",BICYCLE,1.72,Halifax,
+"Eagleson Park and Ride, Ottawa",Downtown Ottawa,TRANSIT,24.01,Ottawa,
+"Riverside South, Ottawa",Downtown Ottawa,DRIVE,18.08,Ottawa,
+Gatineau,Ottawa,TRANSIT,6.02,Ottawa,
+"Orleans, Ottawa",Downtown Ottawa,DRIVE,19.2,Ottawa,
+"The Glebe, Ottawa","Any highway, Ottawa",DRIVE,2.42,Ottawa,
+"Barrhaven Centre Station, Ottawa","Campus Station, Ottawa",TRANSIT,25.43,Ottawa,
+"Vanier, Ottawa","Tunney's Pasture, Ottawa",BICYCLE,8.92,Ottawa,
+"Newton Exchange, Surrey","Surrey Central Station, Surrey",TRANSIT,7.25,Surrey,
+"Cloverdale, Surrey",Richmond/Vancouver,DRIVE,43.56,Surrey,
+"Fleetwood, Surrey",Langley,DRIVE,14.97,Surrey,
+"88th Ave, Surrey",Coquitlam,DRIVE,22.69,Surrey,
+"Gardiner Expressway and Highway 427, Toronto",Downtown Toronto,DRIVE,7.53,Toronto,
+"Highway 401, Mississauga","Highway 401 and Don Valley Parkway, Toronto",DRIVE,59.5,Toronto,
+"Eglinton Station, Toronto","Bloor-Yonge Station, Toronto",TRANSIT,4.41,Toronto,
+"Colwood, Victoria",Downtown Victoria,DRIVE,0.19,Victoria,
+"Tillicum Centre, Victoria","Patricia Bay Highway, Victoria",DRIVE,4.08,Victoria,
+"Esquimalt, Victoria","University of Victoria, Victoria",BICYCLE,7.25,Victoria,
+"Transcona, Winnipeg",Anywhere,DRIVE,N/A,Winnipeg,
+"Charleswood, Winnipeg","St. James, Winnipeg",DRIVE,11.88,Winnipeg,
+"St. Norbert, Winnipeg","Polo Park, Winnipeg",TRANSIT,22.93,Winnipeg,
+"St. James, Winnipeg","Transcona, Winnipeg",DRIVE,16.29,Winnipeg,
+"Riverbend, Winnipeg","St. Boniface, Winnipeg",DRIVE,15.78,Winnipeg,
+"Westwood, Winnipeg","Fort Garry, Winnipeg",DRIVE,16.13,Winnipeg,
+"Wolseley, Winnipeg","University of Manitoba, Winnipeg",BICYCLE,2.98,Winnipeg,
+"Port Coquitlam, BC","Richmond Sea Island, BC",DRIVE,,Surrey,
+"Bathurst and St. Clair, Toronto","43.730149818930826, -79.4484314649261",DRIVE,,Toronto,Submitted by Steven Dennis
+"Squamish, BC","Delta, BC",DRIVE,,Surrey,Submitted by Alex Nevison
+"Barrie, Ontario",GM Oshawa Assembly,DRIVE,,Toronto,Submitted by Henry Toy
+"Camden East, Ontario",Napanee,DRIVE,,Toronto,Submitted by Cindy Hunter
+"Barrhaven Centre Station, Ottawa",Bank St & Ave. Laurier,TRANSIT,,Ottawa,Submitted by Adam Green
+"53.51219525044683, -113.62989869565348","53.581124265285354, -113.49216173065435",DRIVE,,Edmonton,Submitted by Lauren Dombroski
+"53.4359982560371, -113.6093222412034","St. Albert, Alberta",DRIVE,,Edmonton,Submitted by Jaden Houle
+"Bridlewood, Ottawa, ON K2M 3A1","Downtown, Ottawa, ON",CYCLING,,Ottawa,Submitted by Harry
+"49.89712217786214, -97.05075975452641","49.786032966205994, -97.16558151683073",CYCLING,,Winnipeg,Submitted by Lovell
+"Downtown, Ottawa, ON","Kanata, Ottawa, ON",TRANSIT,,Ottawa,Submitted by Michael McCormick
+"Cole Harbour, Nova Scotia","Shearwater, Nova Scotia",TRANSIT,,Halifax,Submitted by Keegan Bulger
+"43.79981652363712, -79.26966538030372","43.90588773299563, -78.93131030300701",DRIVE,,Toronto,"""North Scarborough to Durham region"". Submitted by Kevin Black"
+"East Chezzetcook, Nova Scotia","Halifax, Nova Scotia",DRIVE,,Halifax,Submitted by Curtis Boucher
+"The Beaches, Toronto, ON","CBC Toronto, Canadian Broadcasting Centre, 205 Wellington St W, Toronto, ON M5W 1E6",DRIVE,,Toronto,Submitted by Dana Dragone
+"Armdale rotary notary, 1791 Bloomingdale Terrace, Halifax, NS B3H 4E6","44.69778080386748, -63.584001819363955",TRANSIT,,Halifax,
+"Kipling Ave & Eglinton Ave W, Etobicoke, ON M9R 1Y3","43.59347927593529, -79.64395436760626",DRIVE,,Toronto,Submitted by Arie Smith
+"Stayner, Ontario L0M 1S0","43.67371164802397, -79.41517005007982",DRIVE,,Toronto,Submitted by Joel Plinsk
+"43.6439714995947, -79.4421162780229","43.654405195053954, -79.40143253371338",TRANSIT,,Toronto,"Parkdale to Kensington Market. Submitted by Mike Barber. Sometimes they do this commute by transit, other times by bike. So listed twice."
+"43.6439714995947, -79.4421162780229","43.654405195053954, -79.40143253371338",CYCLING,,Toronto,"Parkdale to Kensington Market. Submitted by Mike Barber. Sometimes they do this commute by transit, other times by bike. So listed twice."

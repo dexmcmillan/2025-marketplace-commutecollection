@@ -14,4 +14,6 @@ dependencies = [
     "gcsfs>=2025.7.0",
     "polyline>=2.0.3",
     "google-maps-routing>=0.6.16",
+    "seaborn>=0.13.2",
+    "geopy>=2.4.1",
 ]

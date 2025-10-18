@@ -16,4 +16,7 @@ dependencies = [
     "google-maps-routing>=0.6.16",
     "seaborn>=0.13.2",
     "geopy>=2.4.1",
+    "pyarrow>=21.0.0",
+    "fastparquet>=2024.11.0",
+    "contextily>=1.6.2",
 ]
